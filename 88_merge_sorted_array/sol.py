@@ -27,12 +27,9 @@ class Solution:
         :rtype: void Do not return anything, modify nums1 in-place instead.
         """
         if n == 0:
-            # print nums1
             return
         if m == 0:
-            for i in range(n):
-                nums1[i] = nums2[i]
-            # print nums1
+            nums1[:n] = nums2[:n]
             return
 
         result = [0] * (m + n)
@@ -50,9 +47,7 @@ class Solution:
         if n > 0:
             result[:n] = nums2[:n]
 
-        for i in range(len(result)):
-            nums1[i] = result[i]
-        # print nums1
+        nums1[:len(result)] = result[:len(result)]
         return
 
 sol = Solution()
