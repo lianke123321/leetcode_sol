@@ -96,23 +96,26 @@ class Solution(object):
             for num in set_nums:
                 want_num = target - num
                 if want_num != num and want_num in set_nums:
-                    index_1 = min(nums.index(num)+1, nums.index(want_num)+1)
-                    index_2 = max(nums.index(num)+1, nums.index(want_num)+1)
-                    return [index_1, index_2]
+                    # index_1 = min(nums.index(num)+1, nums.index(want_num)+1)
+                    # index_2 = max(nums.index(num)+1, nums.index(want_num)+1)
+                    # return [index_1, index_2]
+                    return sorted([nums.index(num)+1, nums.index(want_num)+1])
         else:
             duplicates = list_duplicates(nums)
             for num in duplicates:
                 if 2*num == target:
                     indices = list_duplicates_of(nums, num)
-                    index_1 = min(indices[0]+1, indices[1]+1)
-                    index_2 = max(indices[0]+1, indices[1]+1)
-                    return [index_1, index_2]
+                    # index_1 = min(indices[0]+1, indices[1]+1)
+                    # index_2 = max(indices[0]+1, indices[1]+1)
+                    # return [index_1, index_2]
+                    return sorted([indices[0]+1, indices[1]+1])
             for num in set_nums:
                 want_num = target - num
                 if want_num != num and want_num in set_nums:
-                    index_1 = min(nums.index(num)+1, nums.index(want_num)+1)
-                    index_2 = max(nums.index(num)+1, nums.index(want_num)+1)
-                    return [index_1, index_2]
+                    # index_1 = min(nums.index(num)+1, nums.index(want_num)+1)
+                    # index_2 = max(nums.index(num)+1, nums.index(want_num)+1)
+                    # return [index_1, index_2]
+                    return sorted([nums.index(num)+1, nums.index(want_num)+1])
 
 
 def list_duplicates(seq):
