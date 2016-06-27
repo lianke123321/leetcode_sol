@@ -1,47 +1,57 @@
-__author__ = 'Adrian'
-
-import time
-
-from collections import Counter
-
 class Solution(object):
     def threeSum(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        set_results = set()
-        final_results = []
-        # dict_nums = Counter(nums)
-        dict_nums = {}
-        for num in nums:
-            if num not in dict_nums:
-                dict_nums[num] = nums.count(num)
+        nums.sort()
+        result = []
+        for i in range(0, len(nums) - 1):
+            if i == 0 or (i > 0 and nums[i] != nums[i - 1]):
+                lo = i + 1
+                hi = len(nums) - 1
+                sum = 0 - nums[i]
+                while lo < hi:
+                    if nums[lo] + nums[hi] == sum:
+                        result.append([nums[i], nums[lo], nums[hi]])
+                        while lo < hi and nums[lo] == nums[lo + 1]:
+                            lo += 1
+                        while lo < hi and nums[hi] == nums[hi - 1]:
+                            hi -= 1
+                        lo += 1
+                        hi -= 1
+                    elif nums[lo] + nums[hi] < sum:
+                        lo += 1
+                    else:
+                        hi -= 1
+        return result
 
-        for i in range(0, len(nums)):
-            for m in range(i+1, len(nums)):
-                num_1 = nums[i]
-                num_2 = nums[m]
-                want_num = - num_1 - num_2
+    def threeSum_self(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        nums.sort()
+        result = []
+        for i in range(0, len(nums) - 2):
+            if i == 0 or (i > 0 and nums[i] != nums[i - 1]):
+                p1 = i + 1
+                p2 = len(nums) - 1
+                wanted = 0 - nums[i]
+                while p1 < p2:
+                    if nums[p1] + nums[p2] == wanted:
+                        result.append([nums[i], nums[p1], nums[p2]])
+                        while p1 < p2 and nums[p1] == nums[p1 + 1]:
+                            p1 += 1
+                        while p1 < p2 and nums[p2] == nums[p2 - 1]:
+                            p2 -= 1
+                        p1 += 1
+                        p2 -= 1
+                    elif nums[p1] + nums[p2] < wanted:
+                        p1 += 1
+                    else:
+                        p2 -= 1
+        return result
 
-                dict_nums[num_1] -= 1
-                dict_nums[num_2] -= 1
-
-                if want_num in dict_nums and dict_nums[want_num] > 0:
-                    new_triplet = tuple(sorted([num_1, num_2, want_num]))
-                    if new_triplet not in set_results:
-                        set_results.add(new_triplet)
-
-                dict_nums[num_1] += 1
-                dict_nums[num_2] += 1
-
-        for triplet in set_results:
-            final_results.append(list(triplet))
-
-        return final_results
-
-s = Solution()
-nums = [7,-1,14,-12,-8,7,2,-15,8,8,-8,-14,-4,-5,7,9,11,-4,-15,-6,1,-14,4,3,10,-5,2,1,6,11,2,-2,-5,-7,-6,2,-15,11,-6,8,-4,2,1,-1,4,-6,-15,1,5,-15,10,14,9,-8,-6,4,-6,11,12,-15,7,-1,-9,9,-1,0,-4,-1,-12,-2,14,-9,7,0,-3,-4,1,-2,12,14,-10,0,5,14,-1,14,3,8,10,-8,8,-5,-2,6,-11,12,13,-7,-12,8,6,-13,14,-2,-5,-11,1,3,-6]
-start_time = time.time()
-print s.threeSum(nums)
-print time.time() - start_time
+sol = Solution()
+print sol.threeSum_self([-1, 0, 1, 2, -1, -4])
