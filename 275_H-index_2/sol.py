@@ -41,5 +41,5 @@ class Solution(object):
         # the num of papers instead of num of citations
         return num_of_papers - (hi + 1)
 
-sol  = Solution()
+sol = Solution()
 print sol.hIndex_self([100])
