@@ -1,3 +1,5 @@
+# no Liana solution
+
 class Solution(object):
     def isPerfectSquare(self, num):
         """
