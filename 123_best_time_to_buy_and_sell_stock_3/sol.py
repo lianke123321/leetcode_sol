@@ -16,3 +16,6 @@ class Solution(object):
             buy2 = max(buy2, sell1 - p)
             sell2 = max(sell2, buy2 + p)
         return sell2
+
+sol = Solution()
+print sol.maxProfit([7, 6, 5, 4])
