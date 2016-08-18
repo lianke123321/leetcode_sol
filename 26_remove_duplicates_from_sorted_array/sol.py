@@ -19,10 +19,11 @@ class Solution:
         :rtype: int
         """
         new_len = 0
-        if len(nums) == 0:
-            return new_len
         for n in nums:
-            if n != nums[new_len]:
-                nums[new_len + 1] = n
+            if new_len == 0 or n != nums[new_len - 1]:
+                nums[new_len] = n
                 new_len += 1
-        return new_len + 1
+        return new_len
+
+sol = Solution()
+print sol.removeDuplicates_self([1])
