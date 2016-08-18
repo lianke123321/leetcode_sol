@@ -23,7 +23,7 @@ class Solution:
         :rtype: List[int]
         """
         value_to_index = {}
-        for i in range(len(nums)):
+        for i in xrange(len(nums)):
             if nums[i] not in value_to_index:
                 value_to_index[target - nums[i]] = i
             else:
