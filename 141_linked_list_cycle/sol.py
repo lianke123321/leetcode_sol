@@ -25,16 +25,13 @@ class Solution:
         :type head: ListNode
         :rtype: bool
         """
-        nodes_set = set()
         if not head or not head.next:
             return False
 
-        curr_node = head
-        while curr_node:
-            if curr_node not in nodes_set:
-                nodes_set.add(curr_node)
-                curr_node = curr_node.next
-            else:
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
                 return True
-
         return False
