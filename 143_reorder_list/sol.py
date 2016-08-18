@@ -56,33 +56,32 @@ class Solution:
         if not head or not head.next:
             return
 
-        curr_node = head
-        node_list = []
-        while curr_node:
-            node_list.append(curr_node)
-            curr_node = curr_node.next
+            # split list into 2
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        middle = slow.next
+        slow.next = None
+        a, b = head, middle
 
-        total_nodes = len(node_list)
-        if total_nodes % 2 != 0:
-            half_index = total_nodes / 2 + 1
-        else:
-            half_index = total_nodes / 2
+        # reverse second list
+        last = None
+        curr = b
+        while curr:
+            tmp = curr.next
+            curr.next = last
+            last = curr
+            curr = tmp
+        b = last
 
-        new_node_list = [0] * total_nodes
-        magic = 0
-        for i in range(total_nodes):
-            if i + 1 < half_index:
-                new_node_list[i + magic] = node_list[i]
-                magic += 1
-            elif i + 1 == half_index:
-                new_node_list[i + magic] = node_list[i]
-                if total_nodes % 2 == 0:
-                    magic += 1
-            else:
-                new_node_list[len(node_list) - (i + 1) + magic] = node_list[i]
-                magic -= 1
-
-        for i in range(total_nodes - 1):
-            new_node_list[i].next = new_node_list[i + 1]
-
-        new_node_list[total_nodes - 1].next = None
+        # combine two lists
+        head = a
+        tail = a
+        a = a.next
+        while b:
+            tail.next = b
+            tail = tail.next
+            b = b.next
+            if a:
+                a, b = b, a
