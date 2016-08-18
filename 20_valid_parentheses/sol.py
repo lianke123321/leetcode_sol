@@ -26,9 +26,10 @@ class Solution:
                          ')': '('}
         stack = []
         for char in s:
-            if char in right_to_left and (len(stack) == 0 or right_to_left[char] != stack.pop()):
-                return False
-            if char in right_to_left.values():
+            if char in right_to_left:
+                if len(stack) == 0 or right_to_left[char] != stack.pop():
+                    return False
+            else:
                 stack.append(char)
         return stack == []
 
