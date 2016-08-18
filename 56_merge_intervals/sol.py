@@ -41,54 +41,21 @@ class Solution:
         result.append(newInterval)
         return result
 
-    def merge_self(self, intervals):
+
+class Solution_self:
+    def merge(self, intervals):
         """
         :type intervals: List[Interval]
         :rtype: List[Interval]
         """
-        # some special cases
-        if len(intervals) <= 1:
-            return intervals
-
-        result = [intervals[0]]
-        for i in range(1, len(intervals)):
-            result = self.insert_self(result, intervals[i])
-
-        return result
-
-    def insert_self(self, intervals, newInterval):
-        """
-        :type intervals: List[Interval]
-        :type newInterval: Interval
-        :rtype: List[Interval]
-        """
-        start = newInterval.start
-        end = newInterval.end
         result = []
-        i = 0
-        new_interval_inserted = False
-
-        if len(intervals) == 0:
-            return [newInterval]
-
-        while i < len(intervals):
-            if start > intervals[i].end:
-                result.append(intervals[i])
-            elif end < intervals[i].start:
-                if not new_interval_inserted:
-                    result.append(Interval(start, end))
-                    new_interval_inserted = True
-                result.append(intervals[i])
+        for i in sorted(intervals, key=lambda i: i.start):
+            if result and i.start <= result[-1].end:
+                result[-1].end = max(result[-1].end, i.end)
             else:
-                start = min(start, intervals[i].start)
-                end = max(end, intervals[i].end)
-            i += 1
-
-        if not new_interval_inserted:
-            result.append(Interval(start, end))
-
+                result.append(i)
         return result
 
-sol = Solution()
+sol = Solution_self()
 test_intervals = [Interval(1, 4), Interval(1, 4)]
-print sol.merge_self(test_intervals)
+print sol.merge(test_intervals)
