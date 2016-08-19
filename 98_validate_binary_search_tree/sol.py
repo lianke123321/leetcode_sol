@@ -34,17 +34,16 @@ class Solution(object):
         :rtype: bool
         """
         stack = []
-        p = root
-        pre = None
+        p, last = root, None
         while p or stack:
-            if p:
+            while p:
                 stack.append(p)
                 p = p.left
-            else:
-                curr = stack.pop()
-                if pre and curr.val <= pre.val:
+            if stack:
+                p = stack.pop()
+                if last and p.val <= last.val:
                     return False
-                pre = curr
-                p = curr.right
+                last = p
+                p = p.right
         return True
 
