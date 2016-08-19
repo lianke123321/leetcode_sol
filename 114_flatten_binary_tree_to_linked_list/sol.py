@@ -7,27 +7,21 @@ class TreeNode(object):
 
 
 class Solution(object):
+    def __init__(self):
+        self.prev = None
+
     def flatten(self, root):
         """
         :type root: TreeNode
         :rtype: void Do not return anything, modify root in-place instead.
         """
-        result = []
-        stack = []
-        p = root
-        if p:
-            stack.append(p)
-        while stack:
-            p = stack[0]
-            result.append(p)
-            del stack[0]
-            if p.right and p.right.val != '#':
-                stack.insert(0, p.right)
-            if p.left and p.left.val != '#':
-                stack.insert(0, p.left)
-        if result:
-            p = root
-            for i in range(1, len(result)):
-                p.left = None
-                p.right = result[i]
-                p = p.right
+        if not root:
+            return
+        self.prev = root
+        self.flatten(root.left)
+
+        orig_right = root.right
+        root.right, root.left = root.left, None
+        self.prev.right = orig_right
+
+        self.flatten(orig_right)
