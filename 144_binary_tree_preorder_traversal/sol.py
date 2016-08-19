@@ -43,3 +43,18 @@ class Solution:
                 p = p.right
 
         return result
+
+    def preorderTraversal_self_recursive(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        result = []
+        self.helper(root, result)
+        return result
+
+    def helper(self, node, result):
+        if node:
+            result.append(node.val)
+            self.helper(node.left, result)
+            self.helper(node.right, result)
