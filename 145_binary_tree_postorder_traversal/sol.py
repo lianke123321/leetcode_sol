@@ -56,26 +56,17 @@ class Solution(object):
 
 
 class Solution_recursive(object):
-    def __init__(self):
-        self.result = []
-        self.stack = []
-
     def postorderTraversal(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
         """
-        if root is None:
-            return self.result
+        result = []
+        self.helper(root, result)
+        return result
 
-        self.stack.append(root)
-        self.postorderTraversal(root.left)
-        self.postorderTraversal(root.right)
-        self.visit(root)
-        self.stack.pop()
-
-        if len(self.stack) == 0:
-            return self.result
-
-    def visit(self, node):
-        self.result.append(node.val)
+    def helper(self, node, result):
+        if node:
+            self.helper(node.left, result)
+            self.helper(node.right, result)
+            result.append(node.val)
