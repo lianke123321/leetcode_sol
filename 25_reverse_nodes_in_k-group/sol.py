@@ -48,12 +48,12 @@ class Solution(object):
             # list without first k nodes, directly
             # use curr as 'last' in reverse_linked_list
             # problem
-            curr = self.reverseKGroup(curr, k)
+            last = self.reverseKGroup(curr, k)
             while count > 0:
                 count -= 1
                 next = head.next
-                head.next = curr
-                curr = head
+                head.next = last
+                last = head
                 head = next
-            head = curr
+            head = last
         return head
