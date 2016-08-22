@@ -26,10 +26,9 @@ class Solution(object):
         if not nums:
             return 0
 
-        lo = 0
-        hi = len(nums) - 1
+        lo, hi = 0, len(nums) - 1
         while lo < hi:
-            mid = (lo + hi) / 2
+            mid = (lo + hi) >> 1
             if nums[mid] > target:
                 hi = mid - 1
             elif nums[mid] < target:
@@ -37,7 +36,4 @@ class Solution(object):
             else:
                 return mid
 
-        if nums[lo] >= target:
-            return lo
-        else:
-            return lo + 1
+        return lo if nums[lo] >= target else lo + 1
