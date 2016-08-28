@@ -25,9 +25,6 @@ class Solution:
         :type head: ListNode
         :rtype: bool
         """
-        if not head or not head.next:
-            return False
-
         slow, fast = head, head
         while fast and fast.next:
             slow = slow.next
