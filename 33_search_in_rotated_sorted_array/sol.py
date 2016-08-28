@@ -31,13 +31,9 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        if not nums:
-            return -1
-
-        lo = 0
-        hi = len(nums) - 1
+        lo, hi = 0, len(nums) - 1
         while lo <= hi:
-            mid = (lo + hi) / 2
+            mid = (lo + hi) >> 1
             if target == nums[mid]:
                 return mid
             elif lo == hi:
@@ -54,3 +50,6 @@ class Solution(object):
                 else:
                     hi = mid - 1
         return -1
+
+sol = Solution()
+print sol.search_self([1, 2, 3, 4, 5], 3)
