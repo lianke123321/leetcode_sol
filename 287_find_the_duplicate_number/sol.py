@@ -24,12 +24,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        slow, fast = nums[0], nums[nums[0]]
-        while slow != fast:
+        slow, fast = 0, 0
+        while True:
             slow = nums[slow]
             fast = nums[nums[fast]]
+            if slow == fast:
+                break
         slow = 0
-        while slow != fast:
+        while True:
+            if slow == fast:
+                return slow
             slow = nums[slow]
             fast = nums[fast]
-        return slow
