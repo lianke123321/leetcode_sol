@@ -38,13 +38,9 @@ class Solution(object):
         :type target: int
         :rtype: bool
         """
-        if not nums:
-            return False
-
-        lo = 0
-        hi = len(nums) - 1
+        lo, hi = 0, len(nums) - 1
         while lo <= hi:
-            mid = (lo + hi) / 2
+            mid = (lo + hi) >> 1
             if nums[mid] == target:
                 return True
             elif lo == hi:
@@ -62,5 +58,4 @@ class Solution(object):
                     hi = mid
             else:
                 hi -= 1
-
         return False
