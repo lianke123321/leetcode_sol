@@ -1,5 +1,3 @@
-# No Liana solution for this question
-
 # Definition for a binary tree node.
 class TreeNode(object):
     def __init__(self, x):
@@ -9,6 +7,26 @@ class TreeNode(object):
 
 
 class Solution(object):
+    def countNodes(self, node):
+        if not node:
+            return 0
+        return 1 + self.countNodes(node.left) + self.countNodes(node.right)
+
+    def kthSmallest(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: int
+        """
+        count = self.countNodes(root.left)
+        if k <= count:
+            return self.kthSmallest(root.left, k)
+        elif k > count + 1:
+            return self.kthSmallest(root.right, k - 1 - count) # 1 is counted as current node
+        return root.val
+
+
+class Solution_self(object):
     def kthSmallest(self, root, k):
         """
         :type root: TreeNode
