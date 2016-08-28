@@ -25,10 +25,9 @@ class Solution(object):
         :rtype: int
         """
         num_of_papers = len(citations)
-        lo = 0
-        hi = num_of_papers - 1
+        lo, hi = 0, num_of_papers - 1
         while lo <= hi:
-            mid = (lo + hi) / 2
+            mid = (lo + hi) >> 1
             if num_of_papers - mid == citations[mid]:
                 return citations[mid]
             elif num_of_papers - mid > citations[mid]:
