@@ -24,16 +24,12 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        lo = 0
-        hi = len(nums) - 1
-        while lo < hi:
-            mid = (lo + hi) / 2
-            count = 0
-            for num in nums:
-                if num <= mid:
-                    count += 1
-            if count <= mid:
-                lo = mid + 1
-            else:
-                hi = mid
-        return lo
+        slow, fast = nums[0], nums[nums[0]]
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+        slow = 0
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[fast]
+        return slow
