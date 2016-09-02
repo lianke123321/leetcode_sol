@@ -9,8 +9,9 @@ class Solution(object):
         :rtype: List[int]
         """
         from collections import Counter
+        import heapq
         c = Counter(nums)
-        return sorted(c, key=c.get, reverse=True)[:k]
+        return heapq.nlargest(k, c, c.get)
 
 sol = Solution()
 print sol.topKFrequent([4, 1, -1, 2, -1, 2, 3], 2)
