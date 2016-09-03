@@ -23,8 +23,7 @@ class Solution:
         :type wordDict: Set[str]
         :rtype: bool
         """
-        dp = [False for _ in range(len(s) + 1)]
-        dp[0] = True
+        dp = [True] + [False] * len(s)
 
         for i in xrange(1, len(s) + 1):
             j = i - 1
