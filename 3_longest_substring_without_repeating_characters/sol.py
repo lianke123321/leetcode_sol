@@ -21,24 +21,14 @@ class Solution:
         :type s: str
         :rtype: int
         """
-        if len(s) == 0:
-            return 0
-
-        result = 0
-        ls = set()
-        start = 0
-        i = 0
-        while i < len(s):
-            if s[i] not in ls:
-                ls.add(s[i])
-                i += 1
-            else:
-                length = i - start
-                if length > result:
-                    result = length
-                ls.remove(s[start])
-                start += 1
-        return result
+        longest, l_to_idx, start, p = 0, {}, 0, 0
+        while p < len(s):
+            if s[p] in l_to_idx:
+                longest = max(longest, p - start)
+                start = max(start, l_to_idx[s[p]] + 1)
+            l_to_idx[s[p]] = p
+            p += 1
+        return max(longest, p - start)
 
 sol = Solution()
 print sol.lengthOfLongestSubstring_self('abcdabaa')
