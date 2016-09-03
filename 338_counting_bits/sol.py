@@ -7,8 +7,8 @@ class Solution(object):
         :type num: int
         :rtype: List[int]
         """
-        result = [0 for _ in xrange(num + 1)]
-        for i in range(num + 1):
+        result = [0] * (num + 1)
+        for i in xrange(1, num + 1):
             result[i] = result[i >> 1] + (i & 1)
         return result
 
