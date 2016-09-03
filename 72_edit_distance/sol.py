@@ -39,10 +39,10 @@ class Solution(object):
                 if word1[i - 1] == word2[j - 1]:
                     dp[i][j] = dp[i - 1][j - 1]
                 else:
-                    dp[i][j] = min(dp[i - 1][j - 1] + 1,  # convert word1[:i-2] to word2[:j-2]
-                                                          # then replace word1[i-1] with word2[j-1]
-                                   dp[i - 1][j] + 1,      # convert word1[:i-2] to word2[:j-1]
-                                                          # then delete word1[i-1]
-                                   dp[i][j - 1] + 1)      # convert word1[:i-1] to word2[:j-2]
-                                                          # then insert word2[j-1]
+                    dp[i][j] = min(dp[i - 1][j - 1],  # convert word1[:i-2] to word2[:j-2]
+                                                      # then replace word1[i-1] with word2[j-1]
+                                   dp[i - 1][j],      # convert word1[:i-2] to word2[:j-1]
+                                                      # then delete word1[i-1]
+                                   dp[i][j - 1]) + 1  # convert word1[:i-1] to word2[:j-2]
+                                                      # then insert word2[j-1]
         return dp[-1][-1]
