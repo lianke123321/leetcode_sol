@@ -10,7 +10,7 @@ class Solution(object):
         if len(prices) < 2:
             return 0
 
-        buy, prev_buy, sell, prev_sell = -prices[0], 0, 0, 0
+        buy, sell, prev_sell = -prices[0], 0, 0
         for p in prices:
             prev_buy = buy
             buy = max(prev_sell - p, prev_buy)
