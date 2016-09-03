@@ -24,25 +24,23 @@ class Solution(object):
         :rtype: int
         """
         count = len(s)
-        if count == 0:
+        if count == 0 or s[0] == '0':
             return 0
 
-        dp = [0 for _ in xrange(count + 1)]
-        dp[0] = 1
-        dp[1] = 1 if s[0] != '0' else 0
+        r1, r2 = 1, 1
 
         for i in xrange(2, count + 1):
-            single = int(s[i-1:i])
-            double = int(s[i-2:i])
+            new_r2 = 0
+            single, double = int(s[i-1:i]), int(s[i-2:i])
             if 1 <= single <= 9:
-                dp[i] += dp[i - 1]
+                new_r2 += r2
             if 10 <= double <= 26:
-                dp[i] += dp[i - 2]
+                new_r2 += r1
 
-            if dp[i] == 0:
+            if new_r2 == 0:
                 return 0
-
-        return dp[count]
+            r1, r2 = r2, new_r2
+        return r2
 
 sol = Solution()
-print sol.numDecodings('19001')
+print sol.numDecodings_self('19231')
