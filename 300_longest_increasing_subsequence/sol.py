@@ -7,14 +7,19 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        if len(nums) == 0:
-            return 0
+        tails = [0] * len(nums)
+        max_size = 0
+        for n in nums:
+            start, end = 0, max_size
+            while start < end:
+                mid = (start + end) >> 1
+                if tails[mid] < n:
+                    start = mid + 1
+                else:
+                    end = mid
+            tails[start] = n
+            max_size = max(max_size, start + 1)
+        return max_size
 
-        dp = [1] * len(nums)
-        result = 1
-        for i in range(1, len(nums)):
-            for j in range(i):
-                if nums[i] > nums[j]:
-                    dp[i] = max(dp[i], dp[j] + 1)
-            result = max(result, dp[i])
-        return result
+sol = Solution()
+print sol.lengthOfLIS([10,9,2,5,3,7,101,18])
