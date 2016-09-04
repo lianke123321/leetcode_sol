@@ -62,10 +62,7 @@ class Solution_self(object):
         return result
 
     def isPalindrome(self, s):
-        if len(s) < 2:
-            return True
-        else:
-            return s[:len(s) / 2] == s[-1:len(s) / 2 + len(s) % 2 - 1:-1]
+        return s == s[::-1]
 
 sol = Solution_self()
 print sol.partition('abcdcba')
