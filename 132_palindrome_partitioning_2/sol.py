@@ -23,13 +23,8 @@ class Solution(object):
                 if self.isPalindrome(s[j:i]):
                     dp[i] = min(dp[i], dp[j] + 1)
 
-        # TODO: further optimization
-
     def isPalindrome(self, s):
-        if len(s) < 2:
-            return True
-        else:
-            return s[:len(s) / 2] == s[-1:len(s) / 2 + len(s) % 2 - 1:-1]
+        return s == s[::-1]
 
 sol = Solution()
 print sol.minCut("ababababababababababababcbabababababababababababa")
