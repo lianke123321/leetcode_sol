@@ -38,16 +38,16 @@ class Solution(object):
         dp[0][0] = 1
 
         for i in xrange(1, m):
-            if obstacleGrid[i][0] == 1:
-                dp[i][0] = 0
+            if obstacleGrid[i][0] == 0:
+                dp[i][0] = 1
             else:
-                dp[i][0] = dp[i - 1][0]
+                break
 
         for j in xrange(1, n):
-            if obstacleGrid[0][j] == 1:
-                dp[0][j] = 0
+            if obstacleGrid[0][j] == 0:
+                dp[0][j] = 1
             else:
-                dp[0][j] = dp[0][j - 1]
+                break
 
         for i in xrange(1, m):
             for j in xrange(1, n):
