@@ -8,16 +8,24 @@ class Solution(object):
         :type p: str
         :rtype: bool
         """
-        c = len(s)
-        dp = [True] + [False] * c
+        sp, pp, match, star_idx = 0, 0, 0, -1
 
-        for letter in p:
-            if letter == '*':
-                for i in xrange(1, c + 1):
-                    dp[i] = dp[i] or dp[i - 1]
+        while sp < len(s):
+            if pp < len(p) and (p[pp] == '?' or p[pp] == s[sp]):
+                sp += 1
+                pp += 1
+            elif pp < len(p) and p[pp] == '*':
+                star_idx = pp
+                match = sp
+                pp += 1
+            elif star_idx != -1:
+                pp = star_idx + 1
+                match += 1
+                sp = match
             else:
-                for i in reversed(xrange(c)):
-                    dp[i + 1] = dp[i] and (letter == s[i] or letter == '?')
-            dp[0] = dp[0] and letter == '*'
+                return False
 
-        return dp[-1]
+        while pp < len(p) and p[pp] == '*':
+            pp += 1
+
+        return pp == len(p)
