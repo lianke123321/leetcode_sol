@@ -40,13 +40,13 @@ class Solution(object):
 
         node_stack = [root]
         num_stack = [root.val]
-        all_nums = []
+        result = 0
 
         while node_stack:
             node = node_stack.pop()
             num = num_stack.pop()
             if not node.left and not node.right:
-                all_nums.append(num)
+                result += num
 
             if node.left:
                 node_stack.append(node.left)
@@ -55,4 +55,4 @@ class Solution(object):
             if node.right:
                 node_stack.append(node.right)
                 num_stack.append(num * 10 + node.right.val)
-        return sum(all_nums)
+        return result
