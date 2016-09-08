@@ -28,19 +28,21 @@ class Solution:
 
 
 class Solution_self(object):
+    def __init__(self):
+        self.result = float('-inf')
+
     def maxPathSum(self, root):
         """
         :type root: TreeNode
         :rtype: int
         """
-        result = []
-        self.recursion(root, result)
-        return max(result)
+        self.recursion(root)
+        return self.result
 
-    def recursion(self, root, result):
+    def recursion(self, root):
         if not root:
             return 0
-        left = max(0, self.recursion(root.left, result))
-        right = max(0, self.recursion(root.right, result))
-        result.append(left + right + root.val)
+        left = max(0, self.recursion(root.left))
+        right = max(0, self.recursion(root.right))
+        self.result = max(self.result, left + right + root.val)
         return root.val + max(left, right)
