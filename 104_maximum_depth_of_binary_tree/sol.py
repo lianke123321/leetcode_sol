@@ -26,7 +26,4 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        if not root:
-            return 0
-
-        return max(self.maxDepth_self(root.left), self.maxDepth_self(root.right)) + 1
+        return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1 if root else 0
