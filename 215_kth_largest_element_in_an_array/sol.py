@@ -68,4 +68,5 @@ class Solution_self(object):
         return rightmark
 
 sol = Solution_self()
-print sol.findKthLargest([3, 2, 1, 5, 6, 4], 2)
+l = [3, 2, 1, 5, 6, 4]
+print sol.findKthLargest(l, 2)
