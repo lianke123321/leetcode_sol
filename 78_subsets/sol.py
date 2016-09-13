@@ -25,10 +25,8 @@ class Solution:
         if not nums:
             return result
         for n in nums:
-            tmp = []
-            for ans in result:
-                tmp.append(ans + [n])
-            result += tmp
+            for j in xrange(len(result)):
+                result.append(result[j] + [n])
         return result
 
 sol = Solution()
