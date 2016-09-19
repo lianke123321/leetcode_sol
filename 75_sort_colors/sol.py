@@ -20,13 +20,14 @@ class Solution(object):
         :type nums: List[int]
         :rtype: void Do not return anything, modify nums in-place instead.
         """
-        counter = [0] * 3
-        for num in nums:
-            counter[num] += 1
-
-        p = 0
-        for i in range(len(counter)):
-            while counter[i] > 0:
-                nums[p] = i
-                p += 1
-                counter[i] -= 1
+        zero_idx, idx, two_idx = 0, 0, len(nums) - 1
+        while idx <= two_idx and zero_idx < two_idx:
+            if nums[idx] == 0:
+                nums[idx], nums[zero_idx] = nums[zero_idx], nums[idx]
+                zero_idx += 1
+                idx += 1
+            elif nums[idx] == 2:
+                nums[idx], nums[two_idx] = nums[two_idx], nums[idx]
+                two_idx -= 1
+            else:
+                idx += 1
