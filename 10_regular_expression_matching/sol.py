@@ -19,7 +19,7 @@ class Solution(object):
                     dp[i + 1][j + 1] = dp[i][j] and (p[i] == s[j] or p[i] == '.')
         return dp[-1][-1]
 
-    def isMatch(self, s, p):
+    def isMatch_self(self, s, p):
         """
         :type s: str
         :type p: str
