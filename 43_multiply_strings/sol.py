@@ -34,7 +34,7 @@ class Solution(object):
                 tmp += digits[p2]
                 digits[p1] += tmp / 10
                 digits[p2] = tmp % 10
-        start, ret = len(digits) - 1, ''
+        start = len(digits) - 1
         for i in xrange(len(digits)):
             if digits[i] != 0:
                 start = i
