@@ -34,3 +34,19 @@ class Solution:
             return min_left + min_right + 1
         else:
             return min(min_left, min_right) + 1
+
+    def minDepth_iterative(self, root):
+        if not root:
+            return 0
+        q, lvl = [root], 0
+        while True:
+            lvl += 1
+            sz = len(q)
+            for i in xrange(sz):
+                node = q.pop(0)
+                if not node.left and not node.right:
+                    return lvl
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
