@@ -51,11 +51,13 @@ class Solution_self(object):
             tmp = nums[:]
             self.result.append(tmp)
         else:
+            appeared_nums = set()
             for k in range(i, len(nums)):
-                if nums[k] not in nums[i:k]:
+                if nums[k] not in appeared_nums:
                     nums[k], nums[i] = nums[i], nums[k]
                     self.helper(nums, i + 1)
                     nums[k], nums[i] = nums[i], nums[k]
+                    appeared_nums.add(nums[k])
 
 sol = Solution_self()
 print sol.permuteUnique([2, 2, 1, 1])
