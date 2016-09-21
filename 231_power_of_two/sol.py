@@ -22,3 +22,6 @@ class Solution(object):
             return False
         n = bin(n)[3:]
         return n == '0' * len(n)
+
+        # one-liner
+        # return n > 0 and n & (n - 1) == 0
