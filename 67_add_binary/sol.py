@@ -26,16 +26,16 @@ class Solution(object):
         :rtype: str
         """
         i, j = len(a) - 1, len(b) - 1
-        result, tmp = '', 0
-        while i >= 0 or j >= 0 or tmp > 0:
+        result, carry = '', 0
+        while i >= 0 or j >= 0 or carry > 0:
             if i >= 0:
-                tmp += int(a[i])
+                carry += int(a[i])
                 i -= 1
             if j >= 0:
-                tmp += int(b[j])
+                carry += int(b[j])
                 j -= 1
-            result = str(tmp & 1) + result
-            tmp >>= 1
+            result = str(carry & 1) + result
+            carry >>= 1
         return result if len(result) > 0 else '0'
 
 sol = Solution()
