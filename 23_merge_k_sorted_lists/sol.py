@@ -79,3 +79,27 @@ class Solution:
             curr_node = curr_node.next
 
         return dummy.next
+
+
+import heapq
+
+
+class Solution_heapq(object):
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        dummy = ListNode(0)
+        heap, p = [], dummy
+        for node in lists:
+            if node:
+                heapq.heappush(heap, (node.val, node))
+        while heap:
+            _, next_node = heapq.heappop(heap)
+            p.next = next_node
+            p = p.next
+            if p.next:
+                heapq.heappush(heap, (p.next.val, p.next))
+            p.next = None
+        return dummy.next
