@@ -47,10 +47,9 @@ class Solution_self(object):
             nums.reverse()  # same as self.reverse_list(nums, 0, len(nums) - 1) but is faster
             return
 
-        k = i - 1
-        while nums[j] <= nums[k]:
+        while nums[j] <= nums[i - 1]:
             j -= 1
-        nums[k], nums[j] = nums[j], nums[k]
+        nums[i - 1], nums[j] = nums[j], nums[i - 1]
         self.reverse_list(nums, i, len(nums) - 1)
 
     def reverse_list(self, nums, start, end):
@@ -58,5 +57,3 @@ class Solution_self(object):
             nums[start], nums[end] = nums[end], nums[start]
             start += 1
             end -= 1
-
-
