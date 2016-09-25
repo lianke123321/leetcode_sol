@@ -33,16 +33,13 @@ class Solution_self(object):
         :type k: int
         :rtype: int
         """
-        p = root
-        stack = []
-        i = 0
+        p, stack, i = root, [], 0
         while p or stack:
-            if p:
+            while p:
                 stack.append(p)
                 p = p.left
-            else:
-                p = stack.pop()
-                i += 1
-                if i == k:
-                    return p.val
-                p = p.right
+            p = stack.pop()
+            i += 1
+            if i == k:
+                return p.val
+            p = p.right
