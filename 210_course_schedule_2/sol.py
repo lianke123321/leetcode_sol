@@ -14,7 +14,7 @@ class Solution(object):
         for i, j in prerequisites:
             post_to_pre[i].add(j)
             pre_to_post[j].add(i)
-        print post_to_pre, pre_to_post
+
         stack = [i for i in xrange(numCourses) if len(post_to_pre[i]) == 0]
         result = []
         while stack:
@@ -24,8 +24,7 @@ class Solution(object):
                 post_to_pre[i].remove(node)
                 if len(post_to_pre[i]) == 0:
                     stack.append(i)
-            del post_to_pre[node]
-        return result if not post_to_pre else []
+        return result if len(result) == numCourses else []
 
 sol = Solution()
 print sol.findOrder(3, [[1, 0], [2, 0]])
