@@ -22,7 +22,8 @@ class Solution(object):
     def find(self, nums, i):
         if nums[i] == -1:
             return i
-        return self.find(nums, nums[i])
+        nums[i] = self.find(nums, nums[i])
+        return nums[i]
 
 sol = Solution()
 print sol.countComponents(5, [[0, 1], [1, 2], [3, 4]])
