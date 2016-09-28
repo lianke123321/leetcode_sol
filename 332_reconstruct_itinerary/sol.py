@@ -9,7 +9,7 @@ class Solution(object):
         """
         from collections import defaultdict
         targets = defaultdict(list)
-        for i, j in sorted(tickets)[::-1]:
+        for i, j in sorted(tickets, reverse=True):
             targets[i].append(j)
 
         route, stack = [], ['JFK']
