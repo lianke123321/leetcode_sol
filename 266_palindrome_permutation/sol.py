@@ -11,7 +11,7 @@ class Solution(object):
             return True
 
         from collections import Counter
-        c = Counter([i for i in s])
+        c = Counter(s)
         odd_freq = False
         for letter in c:
             if c[letter] % 2 != 0:
