@@ -46,10 +46,7 @@ class Solution_self(object):
         return s[start:start + length]
 
     def isPalindrome(self, s):
-        if len(s) % 2 == 0:
-            return s[:len(s) / 2] == s[len(s) - 1:len(s) / 2 - 1:-1]
-        else:
-            return s[:len(s) / 2] == s[len(s) - 1:len(s) / 2:-1]
+        return s == s[::-1]
 
 sol = Solution_self()
 print sol.longestPalindrome('abccba')
