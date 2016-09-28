@@ -9,10 +9,9 @@ class Solution(object):
         """
         result = []
         from collections import Counter
-        c = Counter([i for i in s])
+        c = Counter(s)
 
-        has_odd = False
-        odd_letter = None
+        has_odd, odd_letter = False, None
         for l in c:
             if c[l] % 2 != 0:
                 if has_odd:
@@ -35,7 +34,7 @@ class Solution(object):
         else:
             for letter in counter:
                 if counter[letter] > 0:
-                    stack[start], stack[len(stack) - start - 1] = letter, letter
+                    stack[start] = stack[len(stack) - start - 1] = letter
                     counter[letter] -= 2
                     self.dfs(stack, start + 1, counter, result)
                     counter[letter] += 2
