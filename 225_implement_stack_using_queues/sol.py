@@ -23,8 +23,7 @@ class Stack(object):
         """
         if self.stack.qsize() > 1:
             for i in range(self.stack.qsize() - 2):
-                temp = self.stack.get()
-                self.stack.put(temp)
+                self.stack.put(self.stack.get())
             self.last = self.stack.get()
             self.stack.put(self.last)
         self.stack.get()
