@@ -23,4 +23,5 @@ class Solution(object):
     def find(self, nums, i):
         if nums[i] == -1:
             return i
-        return self.find(nums, nums[i])
+        nums[i] = self.find(nums, nums[i])
+        return nums[i]
