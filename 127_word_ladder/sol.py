@@ -37,8 +37,8 @@ class Solution:
         :rtype: int
         """
         start, end, length = {beginWord}, {endWord}, 2
-        wordList -= start
         while start:
+            wordList -= start
             start = wordList & set([word[:i] + char + word[i + 1:] for word in start
                                     for i in xrange(len(word)) for char in 'abcdefghijklmnopqrstuvwxyz'])
             if start & end:
@@ -46,7 +46,6 @@ class Solution:
             length += 1
             if len(start) > len(end):
                 start, end = end, start
-            wordList -= start
         return 0
 
 sol = Solution()
