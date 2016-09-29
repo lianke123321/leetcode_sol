@@ -26,12 +26,12 @@ class Solution(object):
             while start < len(nums) and nums[start] != 0:
                 start += 1
             p = max(p, start)
-            while p < len(nums) - 1 and nums[p + 1] == 0:
+            while p < len(nums) and nums[p] == 0:
                 p += 1
-            if p < len(nums) - 1:
-                nums[start], nums[p + 1] = nums[p + 1], nums[start]
+            if p < len(nums):
+                nums[start], nums[p] = nums[p], nums[start]
 
-nums = [2, 1]
+nums = [1, 0, 3, 2, 0]
 sol = Solution()
 sol.moveZeroes_self(nums)
 print nums
