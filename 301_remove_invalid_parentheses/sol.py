@@ -1,16 +1,16 @@
 # no Liana solution
 
 
+from collections import deque
+
+
 class Solution(object):
     def removeInvalidParentheses(self, s):
         """
         :type s: str
         :rtype: List[str]
         """
-        from collections import deque
-        result = []
-
-        visited, queue, found = {s}, deque(), False
+        result, visited, queue, found = [], {s}, deque(), False
         queue.append(s)
         while queue:
             candidate = queue.pop()
