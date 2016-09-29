@@ -22,6 +22,6 @@ class Solution(object):
         for item in path.split('/'):
             if item not in special:
                 stack.append(item)
-            if item == '..' and stack:
+            elif item == '..' and stack:
                 stack.pop()
         return '/' + '/'.join(stack)
