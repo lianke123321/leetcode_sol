@@ -12,7 +12,7 @@ class Solution(object):
 
         for x in s:
             count[ord(x) - ord('a')] -= 1
-            if visited[ord(x) - ord('a')] or (stack and stack[-1] == x):
+            if visited[ord(x) - ord('a')]:
                 continue
 
             while stack and ord(x) < ord(stack[-1]) and count[ord(stack[-1]) - ord('a')] > 0:
