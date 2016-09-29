@@ -20,9 +20,6 @@ class Solution(object):
             if knows(candidate, i):
                 candidate = i
         for i in xrange(n):
-            if i != candidate and knows(candidate, i):
-                return -1
-        for i in xrange(n):
-            if not knows(i, candidate):
+            if not knows(i, candidate) or (i != candidate and knows(candidate, i)):
                 return -1
         return candidate
