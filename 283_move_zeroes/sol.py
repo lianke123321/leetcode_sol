@@ -23,15 +23,15 @@ class Solution(object):
         """
         start, p = 0, 0
         while p < len(nums) - 1:
-            if nums[p] == 0:
-                if nums[p + 1] != 0:
-                    nums[start], nums[p + 1] = nums[p + 1], nums[start]
-                    start += 1
-            else:
+            while start < len(nums) and nums[start] != 0:
                 start += 1
-            p += 1
+            p = max(p, start)
+            while p < len(nums) - 1 and nums[p + 1] == 0:
+                p += 1
+            if p < len(nums) - 1:
+                nums[start], nums[p + 1] = nums[p + 1], nums[start]
 
-nums = [0,1,0,3,12]
+nums = [2, 1]
 sol = Solution()
 sol.moveZeroes_self(nums)
 print nums
