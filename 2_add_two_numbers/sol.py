@@ -36,24 +36,23 @@ class Solution:
         :rtype: ListNode
         """
         head = ListNode(0)
-        curr = head
-        carry = 0
+        curr, carry = head, 0
         while l1 or l2 or carry > 0:
             if l1 and l2:
-                sum = l1.val + l2.val + carry
-                curr.val = sum % 10
-                carry = sum / 10
+                total = l1.val + l2.val + carry
+                curr.val = total % 10
+                carry = total / 10
                 l1 = l1.next
                 l2 = l2.next
             elif l1:
-                sum = l1.val + carry
-                curr.val = sum % 10
-                carry = sum / 10
+                total = l1.val + carry
+                curr.val = total % 10
+                carry = total / 10
                 l1 = l1.next
             elif l2:
-                sum = l2.val + carry
-                curr.val = sum % 10
-                carry = sum / 10
+                total = l2.val + carry
+                curr.val = total % 10
+                carry = total / 10
                 l2 = l2.next
             else:
                 curr.val = carry
@@ -63,5 +62,4 @@ class Solution:
             if l1 or l2 or carry > 0:
                 curr.next = ListNode(0)
                 curr = curr.next
-
         return head
