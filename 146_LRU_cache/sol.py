@@ -38,24 +38,25 @@
 #         else:
 #             self.cache[key] = value  # update the value of the key
 
+from collections import OrderedDict
+
+
 class LRUCache(object):
     def __init__(self, capacity):
         """
         :type capacity: int
         """
         self.capacity = capacity
-        self.used = 0
-        self.cache = {}
-        self.stack = []
+        self.cache = OrderedDict()
 
     def get(self, key):
         """
         :rtype: int
         """
         if key in self.cache:
-            self.stack.remove(key)
-            self.stack.append(key)
-            return self.cache[key]
+            val = self.cache.pop(key)
+            self.cache[key] = val
+            return val
         else:
             return -1
 
@@ -65,14 +66,19 @@ class LRUCache(object):
         :type value: int
         :rtype: nothing
         """
-        if self.get(key) == -1:
-            if self.used == self.capacity:
-                del_key = self.stack.pop(0)
-                del self.cache[del_key]
+        if key not in self.cache:
+            if self.capacity > 0:
+                self.capacity -= 1
             else:
-                self.used += 1
-
-            self.cache[key] = value
-            self.stack.append(key)
+                self.cache.popitem(last=False)
         else:
-            self.cache[key] = value
+            self.cache.pop(key)
+        self.cache[key] = value
+
+lru = LRUCache(2)
+lru.set(2, 1)
+lru.set(1, 1)
+lru.set(2, 3)
+lru.set(4, 1)
+print lru.get(1)
+print lru.get(2)
