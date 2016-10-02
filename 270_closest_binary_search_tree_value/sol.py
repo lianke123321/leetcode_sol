@@ -16,15 +16,12 @@ class Solution(object):
         :rtype: int
         """
         p = root
-        diff = abs(root.val - target)
-        result = root.val
+        diff, result = abs(root.val - target), root.val
         while p:
             new_diff = abs(p.val - target)
             if new_diff < diff:
-                diff = new_diff
-                result = p.val
-            if target < p.val:
-                p = p.left
-            else:
-                p = p.right
+                diff, result = new_diff, p.val
+                if diff == 0:
+                    return result
+            p = p.left if target < p.val else p.right
         return result
