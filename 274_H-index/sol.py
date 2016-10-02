@@ -34,12 +34,10 @@ class Solution(object):
                 tmp[c] += 1
 
         h = 0
-        i = length
-        while i >= 0:
+        for i in reversed(xrange(length + 1)):
             h += tmp[i]
             if h >= i:
                 return i
-            i -= 1
 
 sol = Solution()
 print sol.hIndex_self([1, 2])
