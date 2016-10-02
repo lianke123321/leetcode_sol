@@ -45,24 +45,23 @@ class Solution_self(object):
         :type s: str
         :rtype: List[List[str]]
         """
-        return self.backtracking(s, [], [])
+        res = []
+        self.backtracking(s, [], res)
+        return res
 
     def backtracking(self, s, stack, result):
+        if not s:
+            result.append(stack[:])
+            return
+
         for i in xrange(1, len(s) + 1):
             if self.isPalindrome(s[:i]):
                 stack.append(s[:i])
-                if i != len(s):
-                    self.backtracking(s[i:], stack, result)
-                else:
-                    result.append(stack[:])
-                    if stack:
-                        stack.pop()
-        if stack:
-            stack.pop()
-        return result
+                self.backtracking(s[i:], stack, result)
+                stack.pop()
 
     def isPalindrome(self, s):
         return s == s[::-1]
 
 sol = Solution_self()
-print sol.partition('abcdcba')
+print sol.partition('aab')
