@@ -29,8 +29,10 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
+        if len(s) != len(t):
+            return False
         from collections import Counter
-        c1, c2 = Counter([i for i in s]), Counter([i for i in t])
+        c1, c2 = Counter(list(s)), Counter(list(t))
         if len(c1) != len(c2):
             return False
         else:
