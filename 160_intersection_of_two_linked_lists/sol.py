@@ -4,6 +4,9 @@ class ListNode(object):
         self.val = x
         self.next = None
 
+    def __str__(self):
+        return str(self.val)
+
 
 class Solution(object):
     def getIntersectionNode(self, headA, headB):
@@ -37,13 +40,11 @@ class Solution(object):
         :type head1, head1: ListNode
         :rtype: ListNode
         """
-        p1 = headA
-        p2 = headB
+        p1, p2 = headA, headB
         if not p1 or not p2:
             return None
         while p1 != p2:
-            p1 = p1.next
-            p2 = p2.next
+            p1, p2 = p1.next, p2.next
 
             # if both reached None
             if p1 == p2:
@@ -56,3 +57,12 @@ class Solution(object):
             if not p2:
                 p2 = headA
         return p1
+
+sol = Solution()
+headA = ListNode(2)
+headB = ListNode(1)
+headB.next = ListNode(3)
+headB.next.next = ListNode(5)
+headB.next.next.next = ListNode(7)
+
+print sol.getIntersectionNode_self(headA, headB)
