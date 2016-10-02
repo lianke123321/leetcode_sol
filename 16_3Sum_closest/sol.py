@@ -30,7 +30,7 @@ class Solution:
         nums.sort()
         # initialize result to be positive infinite
         result = nums[0] + nums[1] + nums[-1]
-        for i in range(0, len(nums) - 2):
+        for i in xrange(0, len(nums) - 2):
             if i == 0 or nums[i] != nums[i - 1]:
                 p1 = i + 1
                 p2 = len(nums) - 1
@@ -42,6 +42,8 @@ class Solution:
                         p2 -= 1
                     if abs(target - sum) < abs(target - result):
                         result = sum
+                        if result == target:
+                            return result
         return result
 
 sol = Solution()
