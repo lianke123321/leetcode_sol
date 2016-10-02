@@ -46,7 +46,6 @@ class Solution(object):
             elif hashmap[words[i]] != pattern[i]:
                 return False
 
-        print hashmap
         return True
 
 sol = Solution()
