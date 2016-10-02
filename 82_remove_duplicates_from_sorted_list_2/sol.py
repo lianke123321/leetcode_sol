@@ -30,31 +30,18 @@ class Solution:
         :type head: ListNode
         :rtype: ListNode
         """
-        last_node = None
-        curr_node = head
-        duplicates = set()
-        while curr_node:
-            if curr_node.val in duplicates:
-                if last_node:
-                    last_node.next = curr_node.next
-                    curr_node = last_node.next
-                else:
-                    head = curr_node.next
-                    curr_node = head
-            elif curr_node.next and curr_node.val == curr_node.next.val:
-                if curr_node.val not in duplicates:
-                    duplicates.add(curr_node.val)
-                if last_node:
-                    last_node.next = curr_node.next.next
-                    curr_node = last_node.next
-                else:
-                    head = curr_node.next.next
-                    curr_node = head
+        dummy = ListNode(0)
+        dummy.next = head
+        front, p = dummy, head
+        while p:
+            while p.next and p.next.val == p.val:
+                p = p.next
+            if front.next == p:
+                front = front.next
             else:
-                last_node = curr_node
-                curr_node = curr_node.next
-
-        return head
+                front.next = p.next
+            p = front.next
+        return dummy.next
 
 sol = Solution()
 head = ListNode(1)
