@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 class Solution(object):
     def findSubstring(self, s, words):
         """
@@ -56,26 +59,23 @@ class Solution(object):
         :type words: List[str]
         :rtype: List[int]
         """
-        hashmap = {}
         result = []
-        num_of_words = len(words)
-        len_of_word = len(words[0])
+        num_of_words, len_of_word = len(words), len(words[0])
 
         if len(s) < num_of_words * len_of_word:
             return result
 
-        for word in words:
-            hashmap[word] = hashmap[word] + 1 if word in hashmap else 1
+        hashmap = Counter(words)
 
         # there are only len_of_word num of iterations we need
         # to count through the s
-        for i in range(len_of_word):
+        for i in xrange(len_of_word):
             start = i  # log the start of current count
             j = i  # j is the current pointer to next word
             tmp = {}  # hashmap for this iteration
             n = 0  # number of matched words so far
             while j <= len(s) - len_of_word:
-                curr_word = s[j:j+len_of_word]
+                curr_word = s[j:j + len_of_word]
                 if curr_word not in hashmap:
                     n = 0
                     tmp = {}
@@ -86,7 +86,7 @@ class Solution(object):
                         n += 1
                     else:
                         while tmp[curr_word] > hashmap[curr_word]:
-                            del_word = s[start:start+len_of_word]
+                            del_word = s[start:start + len_of_word]
                             tmp[del_word] -= 1
                             if tmp[del_word] < hashmap[del_word]:
                                 n -= 1
@@ -94,7 +94,7 @@ class Solution(object):
 
                     if n == num_of_words:
                         result.append(start)
-                        tmp[s[start:start+len_of_word]] -= 1
+                        tmp[s[start:start + len_of_word]] -= 1
                         start += len_of_word
                         n -= 1
 
