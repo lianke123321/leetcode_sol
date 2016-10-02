@@ -42,24 +42,19 @@ class Solution:
         stack = []
         for item in tokens:
             if item == '+':
-                num2 = stack.pop()
-                num1 = stack.pop()
-                stack.append(num1 + num2)
+                stack.append(stack.pop() + stack.pop())
             elif item == '-':
                 num2 = stack.pop()
                 num1 = stack.pop()
                 stack.append(num1 - num2)
             elif item == '*':
-                num2 = stack.pop()
-                num1 = stack.pop()
-                stack.append(num1 * num2)
+                stack.append(stack.pop() * stack.pop())
             elif item == '/':
                 num2 = stack.pop()
                 num1 = stack.pop()
                 stack.append(int(float(num1) / num2))
             else:
                 stack.append(int(item))
-
         return stack.pop()
 
 sol = Solution()
