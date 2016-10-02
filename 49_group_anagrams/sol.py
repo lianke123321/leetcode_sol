@@ -25,7 +25,6 @@ class Solution(object):
         :type strs: List[str]
         :rtype: List[List[str]]
         """
-        result = []
         hashmap = {}
         for s in strs:
             tmp = ''.join(sorted(s))
@@ -33,8 +32,4 @@ class Solution(object):
                 hashmap[tmp].append(s)
             else:
                 hashmap[tmp] = [s]
-
-        for k in hashmap:
-            result.append(hashmap[k])
-
-        return result
+        return [hashmap[i] for i in hashmap]
