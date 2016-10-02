@@ -40,9 +40,7 @@ class Solution(object):
         if not head or k == 0:
             return head
 
-        num = 0
-        curr = head
-        last = None
+        num, curr, last = 0, head, None
         while curr:
             num += 1
             if not curr.next:
@@ -50,7 +48,7 @@ class Solution(object):
             curr = curr.next
 
         # then get the true k
-        k = k % num
+        k %= num
 
         if k == 0:
             return head
