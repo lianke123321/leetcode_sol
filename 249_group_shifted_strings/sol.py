@@ -7,7 +7,6 @@ class Solution(object):
         :type strings: List[str]
         :rtype: List[List[str]]
         """
-        result = []
         hashmap = {}
         for s in strings:
             if len(s) == 1:
@@ -16,22 +15,14 @@ class Solution(object):
                 else:
                     hashmap['-1'].append(s)
             else:
-                tmp = []
-                for i in range(len(s) - 1):
-                    tmp.append(self.get_distance(s[i], s[i + 1]))
-                key = ' '.join(tmp)
+                key = ' '.join([self.get_distance(s[i], s[i + 1]) for i in xrange(len(s) - 1)])
                 if key in hashmap:
                     hashmap[key].append(s)
                 else:
                     hashmap[key] = [s]
 
-        for k in hashmap:
-            result.append(hashmap[k])
-        return result
+        return [hashmap[i] for i in hashmap]
 
     def get_distance(self, a, b):
-        d1, d2 = ord(a.upper()), ord(b.upper())
-        if d2 >= d1:
-            return str(d2 - d1)
-        else:
-            return str(26 - abs(d2 - d1))
+        diff = ord(b.upper()) - ord(a.upper())
+        return str(diff) if diff >= 0 else str(26 + diff)
