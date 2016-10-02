@@ -4,6 +4,9 @@ class ListNode(object):
         self.val = x
         self.next = None
 
+    def __str__(self):
+        return str(self.val)
+
 
 class Solution(object):
     def removeElements(self, head, val):
@@ -39,12 +42,13 @@ class Solution(object):
         dummy = ListNode(0)
         dummy.next = head
         curr = dummy
-        while curr.next:
+        while curr and curr.next:
             if curr.next.val != val:
                 curr = curr.next
             else:
-                if curr.next.next:
-                    curr.next = curr.next.next
-                else:
-                    curr.next = None
+                curr.next = curr.next.next
         return dummy.next
+
+sol = Solution()
+head = ListNode(1)
+print sol.removeElements_self(head, 1)
