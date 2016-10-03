@@ -32,7 +32,7 @@ class Solution_self(object):
         :type target: int
         :rtype: List[List[int]]
         """
-        candidates = [i for i in xrange(1, 10)]
+        candidates = range(1, 10)
         target = n
         self.dfs([], candidates, target, k)
         return self.result
@@ -44,10 +44,10 @@ class Solution_self(object):
         elif len(stack) >= k:
             return
         else:
-            for i in reversed(xrange(len(candidates))):
+            for i in xrange(len(candidates)):
                 if candidates[i] > target:
-                    continue
-                self.dfs(stack + [candidates[i]], candidates[:i], target - candidates[i], k)
+                    break
+                self.dfs(stack + [candidates[i]], candidates[i + 1:], target - candidates[i], k)
 
 sol = Solution_self()
 print sol.combinationSum3(3, 9)
