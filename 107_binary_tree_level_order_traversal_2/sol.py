@@ -49,3 +49,25 @@ class Solution_self(object):
         result = []
         self.recursion(root, 0, result)
         return list(reversed(result))
+
+    def levelOrder_iterative(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        result = []
+        if not root:
+            return result
+        q = [root]
+        while q:
+            length, tmp = len(q), []
+            for i in xrange(length):
+                curr = q[0]
+                tmp.append(curr.val)
+                if curr.left:
+                    q.append(curr.left)
+                if curr.right:
+                    q.append(curr.right)
+                q.pop(0)
+            result.append(tmp)
+        return list(reversed(result))
