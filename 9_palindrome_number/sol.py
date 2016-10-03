@@ -19,11 +19,7 @@ class Solution(object):
         :rtype: bool
         """
         x = str(x)
-        l = len(x)
-        if l % 2 == 0:
-            return x[:l/2] == x[l - 1:l/2 - 1:-1]
-        else:
-            return x[:l/2] == x[l - 1:l/2:-1]
+        return x == x[::-1]
 
 sol = Solution()
 print sol.isPalindrome_self(12421)
