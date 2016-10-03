@@ -48,8 +48,7 @@ class Solution_self(object):
 
     def helper(self, nums, i):
         if i == len(nums) - 1:
-            tmp = nums[:]
-            self.result.append(tmp)
+            self.result.append(nums[:])
         else:
             appeared_nums = set()
             for k in range(i, len(nums)):
