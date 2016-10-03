@@ -41,4 +41,4 @@ class Solution_self(object):
             for i in xrange(len(candidates)):
                 if candidates[i] > target:
                     break
-                self.dfs(stack + [candidates[i]], candidates[:i + 1], target - candidates[i])
+                self.dfs(stack + [candidates[i]], candidates[i:], target - candidates[i])
