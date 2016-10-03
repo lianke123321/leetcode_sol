@@ -26,26 +26,23 @@ class Solution:
 
 
 class Solution_self(object):
-    def __init__(self):
-        self.result = []
-
     def permute(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        self.helper(nums, 0)
-        return self.result
+        result = []
+        self.recursion(nums, 0, len(nums), result)
+        return result
 
-    def helper(self, nums, i):
-        if i == len(nums) - 1:
-            tmp = nums[:]
-            self.result.append(tmp)
+    def recursion(self, nums, i, n, result):
+        if i == n - 1:
+            result.append(nums[:])
         else:
-            for k in range(i, len(nums)):
-                nums[k], nums[i] = nums[i], nums[k]
-                self.helper(nums, i + 1)
-                nums[k], nums[i] = nums[i], nums[k]
+            for k in xrange(i, n):
+                nums[i], nums[k] = nums[k], nums[i]
+                self.recursion(nums, i + 1, n, result)
+                nums[i], nums[k] = nums[k], nums[i]
 
 sol = Solution_self()
 print sol.permute([1, 2, 3])
