@@ -32,16 +32,16 @@ class Solution_self(object):
         """
         candidates.sort()
         self.dfs([], candidates, target)
-        return [list(k) for k in self.result]
+        return [list(l) for l in self.result]
 
     def dfs(self, stack, candidates, target):
         if target == 0:
             self.result.add(tuple(stack))
         else:
-            for i in reversed(xrange(len(candidates))):
+            for i in xrange(len(candidates)):
                 if candidates[i] > target:
-                    continue
-                self.dfs(stack + [candidates[i]], candidates[:i], target - candidates[i])
+                    break
+                self.dfs(stack + [candidates[i]], candidates[i + 1:], target - candidates[i])
 
 sol = Solution_self()
 print sol.combinationSum2([10, 1, 2, 7, 6, 1, 5], 8)
