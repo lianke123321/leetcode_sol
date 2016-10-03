@@ -30,6 +30,7 @@ class Solution_self(object):
         :type target: int
         :rtype: List[List[int]]
         """
+        candidates.sort()
         self.dfs([], candidates, target)
         return self.result
 
@@ -37,7 +38,7 @@ class Solution_self(object):
         if target == 0:
             self.result.append(stack)
         else:
-            for i in reversed(xrange(len(candidates))):
+            for i in xrange(len(candidates)):
                 if candidates[i] > target:
-                    continue
+                    break
                 self.dfs(stack + [candidates[i]], candidates[:i + 1], target - candidates[i])
