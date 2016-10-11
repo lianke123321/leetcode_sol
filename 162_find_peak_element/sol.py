@@ -20,10 +20,9 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        lo = 0
-        hi = len(nums) - 1
+        lo, hi = 0, len(nums) - 1
         while lo < hi:
-            mid1 = lo + (hi - lo) / 2
+            mid1 = (lo + hi) >> 1
             mid2 = mid1 + 1
             if nums[mid1] < nums[mid2]:
                 lo = mid2
