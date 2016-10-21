@@ -32,7 +32,9 @@ class Solution:
             return self.mergeTwoLists(lists[0], lists[1])
         return self.mergeTwoLists(self.mergeKLists(lists[0: length / 2]), self.mergeKLists(lists[length / 2: length]))
 
-    def mergeKLists_self(self, lists):
+
+class Solution_recursive:
+    def mergeKLists(self, lists):
         """
         :type lists: List[ListNode]
         :rtype: ListNode
@@ -43,12 +45,12 @@ class Solution:
         elif num_of_lists == 1:
             return lists[0]
         elif num_of_lists == 2:
-            return self.mergeTwoLists_self(lists[0], lists[1])
+            return self.mergeTwoLists(lists[0], lists[1])
         else:
-            return self.mergeTwoLists_self(self.mergeKLists_self(lists[:num_of_lists/2]),
-                                           self.mergeKLists_self(lists[num_of_lists/2:]))
+            return self.mergeTwoLists(self.mergeKLists(lists[:num_of_lists/2]),
+                                      self.mergeKLists(lists[num_of_lists/2:]))
 
-    def mergeTwoLists_self(self, l1, l2):
+    def mergeTwoLists(self, l1, l2):
         """
         :type l1: ListNode
         :type l2: ListNode
