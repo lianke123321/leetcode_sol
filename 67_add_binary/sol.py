@@ -36,7 +36,7 @@ class Solution(object):
                 j -= 1
             result = str(carry & 1) + result
             carry >>= 1
-        return result if len(result) > 0 else '0'
+        return result if result else '0'
 
 sol = Solution()
 print sol.addBinary_self('0', '1')
