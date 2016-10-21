@@ -32,7 +32,7 @@ class Solution(object):
             dp[i + 1][0] = dp[i - 1][0] and p[i] == '*'
 
         for i in xrange(len(p)):
-            for j in range(len(s)):
+            for j in xrange(len(s)):
                 if p[i] == '*':
                     dp[i + 1][j + 1] = dp[i - 1][j + 1] or dp[i][j + 1]
                     if p[i - 1] == s[j] or p[i - 1] == '.':
