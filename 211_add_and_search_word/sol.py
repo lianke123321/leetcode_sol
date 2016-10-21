@@ -1,4 +1,6 @@
 # skipped Liana solution
+
+
 from collections import defaultdict
 
 
@@ -34,8 +36,7 @@ class WordDictionary(object):
         :type current: TrieNode
         :rtype: bool
         """
-        if not current:
-            current = self.root
+        current = current or self.root
         for i in xrange(len(word)):
             if word[i] == '.':
                 tmp = current
@@ -46,7 +47,7 @@ class WordDictionary(object):
                 return False
             else:
                 current = current.children.get(word[i])
-                if current is None:
+                if not current:
                     return False
         return current.is_word
 
